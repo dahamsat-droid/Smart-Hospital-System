@@ -1,0 +1,16 @@
+# Compiled binaries
+*.o
+*.out
+*.exe
+smart_hospital
+src/smart_hospital
+
+# Mac system files
+.DS_Store
+
+# VS Code settings (optional — keep if you want personal settings ignored)
+.vscode/
+
+# Data files generated at runtime (keep these OUT of git — they're user data, not source)
+beds_status.txt
+patient_records.txt
