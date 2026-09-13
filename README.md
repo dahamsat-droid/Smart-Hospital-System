@@ -3,7 +3,8 @@
 A modular, menu-driven patient management and billing system built in C, simulating daily patient intake, bed allocation, emergency triage sorting, and medical billing for a hospital environment.
 
 > Individual assignment — CSC 1012 Introduction to Computer Programming
-> University of Sri Jayewardenepura, Faculty of Applied Sciences
+> University of Sri Jayewardenepura
+> Faculty of Applied Sciences
 
 ---
 
