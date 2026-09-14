@@ -35,3 +35,4 @@ void displayBedStatus(int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
         }
         printf("  (%d/%d occupied)\n", occupied, bedCapacities[w]);
     }
+}
