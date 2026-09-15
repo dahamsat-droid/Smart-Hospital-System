@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "hospital.h"
 #include "display.h"
+#include "patient.h"
 
 int main(void) {
     char specialtyNames[NUM_SPECIALTIES][NAME_LEN] = {
@@ -17,6 +18,18 @@ int main(void) {
     int bedCapacities[NUM_WARDS]    = {20, 10, 10, 5};
 
     int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD] = {0};
+    int specialtyQueueCount[NUM_SPECIALTIES] = {0};
+
+    char patientIds[MAX_PATIENTS][16];
+    char patientNames[MAX_PATIENTS][NAME_LEN];
+    int patientAges[MAX_PATIENTS];
+    int urgencyLevels[MAX_PATIENTS];
+    int specialtyIds[MAX_PATIENTS];
+    int isAdmitted[MAX_PATIENTS];
+    int wardIds[MAX_PATIENTS];
+    int bedNumbers[MAX_PATIENTS];
+    int daysAdmitted[MAX_PATIENTS];
+    int patientCount = 0;
 
     int choice;
 
@@ -30,7 +43,7 @@ int main(void) {
         printf(" 4. Register New Patient        [coming soon]\n");
         printf(" 5. View Patients by Priority   [coming soon]\n");
         printf(" 6. Generate Summary Report     [coming soon]\n");
-        printf(" 0. Exit\n");
+        printf(" 7. Exit\n");
         printf("==================================================\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -46,17 +59,22 @@ int main(void) {
                 displayBedStatus(bedOccupancy, wardNames, bedCapacities);
                 break;
             case 4:
+                registerPatient(patientIds, patientNames, patientAges, urgencyLevels,
+                                 specialtyIds, isAdmitted, wardIds, bedNumbers, daysAdmitted,
+                                 &patientCount, bedOccupancy, bedCapacities,
+                                 specialtyQueueCount, wardNames);
+                break;
             case 5:
             case 6:
                 printf("\nThis feature is built in a later stage of development.\n");
                 break;
-            case 0:
+            case 7:
                 printf("\nExiting system. Goodbye!\n");
                 break;
             default:
                 printf("\nInvalid choice. Please try again.\n");
         }
-    } while (choice != 0);
+    } while (choice != 7);
 
     return 0;
 }
