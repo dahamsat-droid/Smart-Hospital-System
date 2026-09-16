@@ -4,7 +4,8 @@
 #include "hospital.h"
 
 /* Registers one patient: collects input, assigns a bed if admitted,
- * updates the specialty queue count, and prints a confirmation.
+ * then calls billing.c to compute and print the full bill (which also
+ * updates the specialty queue count as part of the wait-time calculation).
  * Returns the patient's array index, or -1 if MAX_PATIENTS is reached. */
 int registerPatient(char patientIds[MAX_PATIENTS][16],
                      char patientNames[MAX_PATIENTS][NAME_LEN],
@@ -19,6 +20,10 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
                      int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
                      int bedCapacities[NUM_WARDS],
                      int specialtyQueueCount[NUM_SPECIALTIES],
-                     char wardNames[NUM_WARDS][NAME_LEN]);
+                     char wardNames[NUM_WARDS][NAME_LEN],
+                     char specialtyNames[NUM_SPECIALTIES][NAME_LEN],
+                     double baseFees[NUM_SPECIALTIES],
+                     double wardDailyRates[NUM_WARDS],
+                     int consultTimes[NUM_SPECIALTIES]);
 
 #endif
