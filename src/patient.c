@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "patient.h"
+#include "billing.h"
 
 /* Only used inside this file, so it's not declared in patient.h. */
 static int findAvailableBed(int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD], int wardIndex, int capacity) {
@@ -25,7 +26,11 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
                      int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
                      int bedCapacities[NUM_WARDS],
                      int specialtyQueueCount[NUM_SPECIALTIES],
-                     char wardNames[NUM_WARDS][NAME_LEN]) {
+                     char wardNames[NUM_WARDS][NAME_LEN],
+                     char specialtyNames[NUM_SPECIALTIES][NAME_LEN],
+                     double baseFees[NUM_SPECIALTIES],
+                     double wardDailyRates[NUM_WARDS],
+                     int consultTimes[NUM_SPECIALTIES]) {
 
     if (*patientCount >= MAX_PATIENTS) {
         printf("\nPatient limit reached. Cannot register more patients.\n");
@@ -56,7 +61,6 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
         scanf("%d", &specialty);
     } while (specialty < 1 || specialty > NUM_SPECIALTIES);
     specialtyIds[i] = specialty;
-    specialtyQueueCount[specialty - 1]++;
 
     int admitted;
     do {
@@ -101,17 +105,13 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
     snprintf(patientIds[i], 16, "PAT-%d", i + 1001);
     (*patientCount)++;
 
-    printf("\n----------------------------------------\n");
-    printf("Patient registered successfully.\n");
-    printf("Patient ID : %s\n", patientIds[i]);
-    printf("Name       : %s\n", patientNames[i]);
-    if (isAdmitted[i]) {
-        printf("Ward       : %s (Bed #%02d)\n", wardNames[wardIds[i] - 1], bedNumbers[i] + 1);
-    } else {
-        printf("Status     : Outpatient (OPD)\n");
-    }
-    printf("----------------------------------------\n");
-    printf("(Full billing breakdown is added once billing.c is built - Day 4)\n");
+    double wardRateForBill = isAdmitted[i] ? wardDailyRates[wardIds[i] - 1] : 0.0;
+    char *wardNameForBill = isAdmitted[i] ? wardNames[wardIds[i] - 1] : "N/A";
+
+    printBillReceipt(patientIds[i], patientNames[i], patientAges[i],
+                      specialtyNames[specialty - 1], wardNameForBill, isAdmitted[i], bedNumbers[i],
+                      urgencyLevels[i], baseFees[specialty - 1], daysAdmitted[i], wardRateForBill,
+                      specialtyQueueCount, specialty, consultTimes);
 
     return i;
 }
