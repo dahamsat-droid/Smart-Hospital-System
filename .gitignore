@@ -4,6 +4,8 @@
 *.exe
 smart_hospital
 src/smart_hospital
+hospital
+hospital.dSYM/
 
 # Mac system files
 .DS_Store
