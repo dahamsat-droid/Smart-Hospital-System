@@ -3,6 +3,7 @@
 #include "display.h"
 #include "patient.h"
 #include "billing.h"
+#include "sorting.h"
 
 int main(void) {
     char specialtyNames[NUM_SPECIALTIES][NAME_LEN] = {
@@ -31,6 +32,7 @@ int main(void) {
     int bedNumbers[MAX_PATIENTS];
     int daysAdmitted[MAX_PATIENTS];
     int patientCount = 0;
+    int sortedIndices[MAX_PATIENTS];
 
     int choice;
 
@@ -41,8 +43,8 @@ int main(void) {
         printf(" 1. View Doctor Specialties\n");
         printf(" 2. View Hospital Wards\n");
         printf(" 3. View Bed Occupancy Status\n");
-        printf(" 4. Register New Patient \n");
-        printf(" 5. View Patients by Priority   [coming soon]\n");
+        printf(" 4. Register New Patient\n");
+        printf(" 5. View Patients by Priority\n");
         printf(" 6. Generate Summary Report     [coming soon]\n");
         printf(" 7. Exit\n");
         printf("==================================================\n");
@@ -67,6 +69,9 @@ int main(void) {
                                  baseFees, dailyRates, consultTimes);
                 break;
             case 5:
+                sortPatientsByPriority(urgencyLevels, patientCount, sortedIndices);
+                displaySortedPatients(sortedIndices, patientCount, patientIds, patientNames, urgencyLevels);
+                break;
             case 6:
                 printf("\nThis feature is built in a later stage of development.\n");
                 break;
