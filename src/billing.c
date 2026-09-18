@@ -25,7 +25,8 @@ double calculateDiscount(int age, double grossTotal) {
 void printBillReceipt(char *patientId, char *patientName, int age,
                        char *specialtyName, char *wardName, int isAdmitted, int bedNumber,
                        int urgencyLevel, double baseFee, int daysAdmitted, double wardDailyRate,
-                       int specialtyQueueCount[NUM_SPECIALTIES], int specialtyId, int consultTimes[NUM_SPECIALTIES]) {
+                       int specialtyQueueCount[NUM_SPECIALTIES], int specialtyId, int consultTimes[NUM_SPECIALTIES],
+                       double *outFinalPayable, double *outDiscount) {
 
     double surcharge = calculateSurcharge(urgencyLevel, baseFee);
     double wardCost = isAdmitted ? calculateWardCost(daysAdmitted, wardDailyRate) : 0.0;
@@ -74,4 +75,7 @@ void printBillReceipt(char *patientId, char *patientName, int age,
         printf("Estimated Waiting Time  : %.2f mins\n", waitTime);
     }
     printf("====================================================\n");
+
+    if (outFinalPayable) *outFinalPayable = finalPayable;
+    if (outDiscount) *outDiscount = discount;
 }
