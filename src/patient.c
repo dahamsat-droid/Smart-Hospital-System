@@ -22,6 +22,8 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
                      int wardIds[MAX_PATIENTS],
                      int bedNumbers[MAX_PATIENTS],
                      int daysAdmitted[MAX_PATIENTS],
+                     double finalBillAmounts[MAX_PATIENTS],
+                     double discountAmounts[MAX_PATIENTS],
                      int *patientCount,
                      int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
                      int bedCapacities[NUM_WARDS],
@@ -111,7 +113,8 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
     printBillReceipt(patientIds[i], patientNames[i], patientAges[i],
                       specialtyNames[specialty - 1], wardNameForBill, isAdmitted[i], bedNumbers[i],
                       urgencyLevels[i], baseFees[specialty - 1], daysAdmitted[i], wardRateForBill,
-                      specialtyQueueCount, specialty, consultTimes);
+                      specialtyQueueCount, specialty, consultTimes,
+                      &finalBillAmounts[i], &discountAmounts[i]);
 
     return i;
 }
