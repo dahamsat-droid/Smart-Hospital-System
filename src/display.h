@@ -3,17 +3,17 @@
 
 #include "hospital.h"
 
-void displaySpecialties(char specialtyNames[NUM_SPECIALTIES][NAME_LEN],
-                         double baseFees[NUM_SPECIALTIES],
-                         int consultTimes[NUM_SPECIALTIES],
-                         int dailyCaps[NUM_SPECIALTIES]);
+void displaySpecialties(const char specialtyNames[NUM_SPECIALTIES][NAME_LEN],
+                        const double baseFees[NUM_SPECIALTIES],
+                        const int consultTimes[NUM_SPECIALTIES],
+                        const int dailyCaps[NUM_SPECIALTIES]);
 
-void displayWards(char wardNames[NUM_WARDS][NAME_LEN],
-                   double dailyRates[NUM_WARDS],
-                   int bedCapacities[NUM_WARDS]);
+void displayWards(const char wardNames[NUM_WARDS][NAME_LEN],
+                  const double dailyRates[NUM_WARDS],
+                  const int bedCapacities[NUM_WARDS]);
 
-void displayBedStatus(int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
-                       char wardNames[NUM_WARDS][NAME_LEN],
-                       int bedCapacities[NUM_WARDS]);
+void displayBedStatus(const int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
+                      const char wardNames[NUM_WARDS][NAME_LEN],
+                      const int bedCapacities[NUM_WARDS]);
 
 #endif

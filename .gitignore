@@ -10,9 +10,9 @@ hospital.dSYM/
 # Mac system files
 .DS_Store
 
-# VS Code settings (optional — keep if you want personal settings ignored)
+# VS Code settings
 .vscode/
 
-# Data files generated at runtime (keep these OUT of git — they're user data, not source)
+# Runtime data files
 beds_status.txt
 patient_records.txt
