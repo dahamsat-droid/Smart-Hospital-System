@@ -45,3 +45,19 @@ void logPatientRecord(char *patientId, char *patientName, int urgencyLevel, doub
 
     fclose(file);
 }
+
+int loadPatientCount(void) {
+    FILE *file = fopen("patient_records.txt", "r");
+    if (file == NULL) {
+        return 0; /* no log yet - first run ever */
+    }
+
+    int count = 0;
+    int ch;
+    while ((ch = fgetc(file)) != EOF) {
+        if (ch == '\n') count++;
+    }
+
+    fclose(file);
+    return count;
+}

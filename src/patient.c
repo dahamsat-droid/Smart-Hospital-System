@@ -26,6 +26,7 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
                      double finalBillAmounts[MAX_PATIENTS],
                      double discountAmounts[MAX_PATIENTS],
                      int *patientCount,
+                     int *patientIdCounter,
                      int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD],
                      int bedCapacities[NUM_WARDS],
                      int specialtyQueueCount[NUM_SPECIALTIES],
@@ -105,7 +106,8 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
         daysAdmitted[i] = 0;
     }
 
-    snprintf(patientIds[i], 16, "PAT-%d", i + 1001);
+    snprintf(patientIds[i], 16, "PAT-%d", *patientIdCounter + 1001);
+    (*patientIdCounter)++;
     (*patientCount)++;
 
     double wardRateForBill = isAdmitted[i] ? wardDailyRates[wardIds[i] - 1] : 0.0;

@@ -13,4 +13,9 @@ void loadBedStatus(int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD]);
  * not at exit, so a record survives even if the program doesn't exit cleanly. */
 void logPatientRecord(char *patientId, char *patientName, int urgencyLevel, double finalPayable);
 
+/* Counts existing lines in patient_records.txt so patientCount can continue
+ * from where the last run left off, instead of restarting IDs at PAT-1001
+ * every time the program runs. Returns 0 if the file doesn't exist yet. */
+int loadPatientCount(void);
+
 #endif

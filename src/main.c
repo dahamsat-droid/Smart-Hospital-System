@@ -2,7 +2,6 @@
 #include "hospital.h"
 #include "display.h"
 #include "patient.h"
-#include "billing.h"
 #include "sorting.h"
 #include "reports.h"
 #include "fileio.h"
@@ -37,6 +36,7 @@ int main(void) {
     double finalBillAmounts[MAX_PATIENTS];
     double discountAmounts[MAX_PATIENTS];
     int patientCount = 0;
+    int patientIdCounter = loadPatientCount(); /* total ever registered, across all runs - used only for ID numbering */
     int sortedIndices[MAX_PATIENTS];
 
     int choice;
@@ -70,7 +70,7 @@ int main(void) {
                 registerPatient(patientIds, patientNames, patientAges, urgencyLevels,
                                  specialtyIds, isAdmitted, wardIds, bedNumbers, daysAdmitted,
                                  finalBillAmounts, discountAmounts,
-                                 &patientCount, bedOccupancy, bedCapacities,
+                                 &patientCount, &patientIdCounter, bedOccupancy, bedCapacities,
                                  specialtyQueueCount, wardNames, specialtyNames,
                                  baseFees, dailyRates, consultTimes);
                 break;
