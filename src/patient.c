@@ -2,6 +2,7 @@
 #include <string.h>
 #include "patient.h"
 #include "billing.h"
+#include "fileio.h"
 
 /* Only used inside this file, so it's not declared in patient.h. */
 static int findAvailableBed(int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD], int wardIndex, int capacity) {
@@ -115,6 +116,8 @@ int registerPatient(char patientIds[MAX_PATIENTS][16],
                       urgencyLevels[i], baseFees[specialty - 1], daysAdmitted[i], wardRateForBill,
                       specialtyQueueCount, specialty, consultTimes,
                       &finalBillAmounts[i], &discountAmounts[i]);
+
+    logPatientRecord(patientIds[i], patientNames[i], urgencyLevels[i], finalBillAmounts[i]);
 
     return i;
 }
