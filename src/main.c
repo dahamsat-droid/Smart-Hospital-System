@@ -5,6 +5,7 @@
 #include "billing.h"
 #include "sorting.h"
 #include "reports.h"
+#include "fileio.h"
 
 int main(void) {
     char specialtyNames[NUM_SPECIALTIES][NAME_LEN] = {
@@ -21,6 +22,7 @@ int main(void) {
     int bedCapacities[NUM_WARDS]    = {20, 10, 10, 5};
 
     int bedOccupancy[NUM_WARDS][MAX_BEDS_PER_WARD] = {0};
+    loadBedStatus(bedOccupancy);
     int specialtyQueueCount[NUM_SPECIALTIES] = {0};
 
     char patientIds[MAX_PATIENTS][16];
@@ -81,6 +83,7 @@ int main(void) {
                                        patientIds, patientNames, bedOccupancy, bedCapacities, wardNames);
                 break;
             case 7:
+                saveBedStatus(bedOccupancy);
                 printf("\nExiting system. Goodbye!\n");
                 break;
             default:
