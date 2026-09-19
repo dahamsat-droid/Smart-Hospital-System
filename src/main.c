@@ -4,6 +4,7 @@
 #include "patient.h"
 #include "billing.h"
 #include "sorting.h"
+#include "reports.h"
 
 int main(void) {
     char specialtyNames[NUM_SPECIALTIES][NAME_LEN] = {
@@ -31,6 +32,8 @@ int main(void) {
     int wardIds[MAX_PATIENTS];
     int bedNumbers[MAX_PATIENTS];
     int daysAdmitted[MAX_PATIENTS];
+    double finalBillAmounts[MAX_PATIENTS];
+    double discountAmounts[MAX_PATIENTS];
     int patientCount = 0;
     int sortedIndices[MAX_PATIENTS];
 
@@ -45,7 +48,7 @@ int main(void) {
         printf(" 3. View Bed Occupancy Status\n");
         printf(" 4. Register New Patient\n");
         printf(" 5. View Patients by Priority\n");
-        printf(" 6. Generate Summary Report     [coming soon]\n");
+        printf(" 6. Generate Summary Report\n");
         printf(" 7. Exit\n");
         printf("==================================================\n");
         printf("Enter your choice: ");
@@ -64,6 +67,7 @@ int main(void) {
             case 4:
                 registerPatient(patientIds, patientNames, patientAges, urgencyLevels,
                                  specialtyIds, isAdmitted, wardIds, bedNumbers, daysAdmitted,
+                                 finalBillAmounts, discountAmounts,
                                  &patientCount, bedOccupancy, bedCapacities,
                                  specialtyQueueCount, wardNames, specialtyNames,
                                  baseFees, dailyRates, consultTimes);
@@ -73,7 +77,8 @@ int main(void) {
                 displaySortedPatients(sortedIndices, patientCount, patientIds, patientNames, urgencyLevels);
                 break;
             case 6:
-                printf("\nThis feature is built in a later stage of development.\n");
+                generateSummaryReport(urgencyLevels, patientCount, finalBillAmounts, discountAmounts,
+                                       patientIds, patientNames, bedOccupancy, bedCapacities, wardNames);
                 break;
             case 7:
                 printf("\nExiting system. Goodbye!\n");
