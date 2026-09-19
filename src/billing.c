@@ -40,8 +40,8 @@ void printBillReceipt(char *patientId, char *patientName, int age,
     const char *urgencyLabel = (urgencyLevel == 1) ? "Normal" : (urgencyLevel == 2) ? "Urgent" : "Critical";
 
     printf("\n====================================================\n");
-    printf(" SMART HOSPITAL ADMISSION & BILL\n");
-    printf("----------------------------------------------------------------------------------------\n");
+    printf("      SMART HOSPITAL ADMISSION & BILL\n");
+    printf("--------------------------------------------------------\n");
     printf("Patient ID     : %s\n", patientId);
     printf("Patient Name   : %s\n", patientName);
     printf("Age            : %d Years%s\n", age, subsidyEligible ? " (15% Subsidy Eligible)" : "");
@@ -52,7 +52,7 @@ void printBillReceipt(char *patientId, char *patientName, int age,
         printf("Assigned Ward  : Outpatient (OPD)\n");
     }
     printf("Urgency Level  : Level %d (%s)\n", urgencyLevel, urgencyLabel);
-    printf("----------------------------------------------------------------------------------------\n");
+    printf("--------------------------------------------------------\n");
     printf("Base Consultation Fee   : LKR %.2f\n", baseFee);
     printf("Emergency Surcharge     : LKR %.2f (%.0f%%)\n", surcharge, surchargePercent);
     if (isAdmitted) {
@@ -60,14 +60,14 @@ void printBillReceipt(char *patientId, char *patientName, int age,
     } else {
         printf("Ward Stay Cost          : LKR 0.00\n");
     }
-    printf("----------------------------------------------------------------------------------------\n");
+    printf("---------------------------------------------------------\n");
     printf("Gross Total Bill        : LKR %.2f\n", grossTotal);
     if (subsidyEligible) {
         printf("Age Subsidy Discount    : LKR -%.2f (15%%)\n", discount);
     } else {
         printf("Age Subsidy Discount    : LKR 0.00 (0%%)\n");
     }
-    printf("----------------------------------------------------------------------------------------\n");
+    printf("---------------------------------------------------------\n");
     printf("Final Payable Amount    : LKR %.2f\n", finalPayable);
     if (urgencyLevel == 3) {
         printf("Estimated Waiting Time  : %.2f mins (Immediate Attention)\n", waitTime);
