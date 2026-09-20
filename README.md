@@ -81,7 +81,7 @@ If you prefer to run the system locally, ensure that **GCC or another C compiler
 
   **Windows:**
 
-  ```bash
+  ```text
    smart_hospital.exe
 ```
 
