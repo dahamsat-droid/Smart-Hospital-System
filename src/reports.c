@@ -106,13 +106,13 @@ void generateSummaryReport(
     const int bedCapacities[NUM_WARDS],
     const char wardNames[NUM_WARDS][NAME_LEN]) {
 
-    printf("\n====================================================\n");
-    printf("             HOSPITAL SUMMARY REPORT\n");
-    printf("====================================================\n");
+    printf("\n=========================================================\n");
+    printf("                     HOSPITAL SUMMARY REPORT\n");
+    printf("=========================================================\n");
 
     if (patientCount == 0) {
         printf("No patients registered yet.\n");
-        printf("====================================================\n");
+        printf("=========================================================\n");
         return;
     }
 
@@ -152,7 +152,7 @@ void generateSummaryReport(
             patientCount
         );
 
-    printf("----------------------------------------------------\n");
+    printf("---------------------------------------------------------\n");
 
     printf("Total Revenue Earned      : LKR %.2f\n",
            totalRevenue);
@@ -160,7 +160,7 @@ void generateSummaryReport(
     printf("Total Discounts Granted   : LKR %.2f\n",
            totalDiscounts);
 
-    printf("----------------------------------------------------\n");
+    printf("---------------------------------------------------------\n");
     printf("Bed Occupancy by Ward:\n");
 
     for (int w = 0; w < NUM_WARDS; w++) {
@@ -183,12 +183,12 @@ void generateSummaryReport(
             patientCount
         );
 
-    printf("----------------------------------------------------\n");
+    printf("---------------------------------------------------------\n");
 
     printf("Highest-Paying Patient    : %s (%s) - LKR %.2f\n",
            patientNames[topIndex],
            patientIds[topIndex],
            finalBillAmounts[topIndex]);
 
-    printf("====================================================\n");
+    printf("=========================================================\n");
 }
