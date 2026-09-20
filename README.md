@@ -2,11 +2,14 @@
 
 A modular, menu-driven patient management and billing system built in C, simulating daily patient intake, bed allocation, emergency triage sorting, and medical billing for a hospital environment.
 
-> Individual assignment — CSC 1012 Introduction to Computer Programming
-> University of Sri Jayewardenepura
-> Faculty of Applied Sciences
+> Individual Assignment — CSC 1012 Introduction to Computer Programming
 
 ---
+
+## 👤 Student Details
+
+- **Name:** D. T. Gamage
+- **Index Number:** AS20250644
 
 ## ✨ Features
 
@@ -28,60 +31,57 @@ A modular, menu-driven patient management and billing system built in C, simulat
 | Version Control | GitHub |
 | Platform | macOS |
 
-## ▶️ Build and Run
+> **Note:** As the project was developed on macOS, **Visual Studio Code** was used as the primary development environment. Code::Blocks was not used because it is primarily designed for Windows and Linux environments. Git was managed through the **GitHub web interface** instead of the Git command line. The source code and version history were maintained on GitHub.
 
-Compile the program in the VS Code terminal:
+## ▶️ Instructions for Evaluation & Compilation
 
-`clang -Wall -Wextra -std=c11 src/main.c -o hospital`
+Since this project is developed using a modular, multi-file C architecture, individual source files cannot be compiled and executed independently. **All `.c` source files must be compiled together** so that the compiler can link the header files (`.h`) with their corresponding function implementations.
 
-Run it:
+Evaluators and instructors can compile and run the **Smart Hospital & Resource Allocation System** using either of the following methods.
 
-`./hospital`
+### Method 1: Using GitHub Codespaces (Cloud / Online IDE)
 
-## 📂 Project Structure
+**— Recommended** *(The project was developed and tested in a GCC-supported environment.)*
 
-\```
-smart-hospital-system/
-├── src/
-│   ├── main.c
+You can compile and run the system directly in your browser without installing a C compiler locally.
 
-├── docs/
-│   └── report.pdf
+1. Navigate to the main page of this repository.
+2. Click the green **Code** button.
+3. Select the **Codespaces** tab and click **Create codespace on main**.
+4. Once the cloud-based VS Code editor loads, open the integrated terminal.
+5. If the terminal is not already in the project root directory, navigate to it using `cd`.
+6. Compile all source files together using the following command:
+   
+   ```bash
+   gcc src/main.c src/display.c src/patient.c src/billing.c src/sorting.c src/reports.c src/fileio.c -o smart_hospital
 
-└── README.md
-\```
+ 7. Run the compiled executable by typing:
+   
+   ```bash
+   ./smart_hospital
+  ```
 
+### Method 2: Local Compilation via Terminal / Command Prompt
 
+If you prefer to run the system locally, ensure that **GCC or another C compiler** is installed on your computer.
 
-## 📋 Sample Output
+1. Clone or download this repository into a local folder.
+2. Open the terminal or command prompt inside the project's root directory.
+3. Compile all source files together using GCC:
+   
+   ```bash
+   gcc src/main.c src/display.c src/patient.c src/billing.c src/sorting.c src/reports.c src/fileio.c -o smart_hospital
 
-\```
+4. Run the executable according to your operating system.
 
-=============================
+   **Linux/macOS:**
 
- SMART HOSPITAL ADMISSION & BILL
+   ```bash
+   ./smart_hospital
 
-=============================
+  **Windows:**
 
-Patient ID     : PAT-1001
-Patient Name   : Mr. Kamal Perera
-...
+  ```bash
+   smart_hospital.exe
+```
 
-Final Payable Amount : LKR 48,237.50
-
-====================================================
-\```
-
-## 🧮 Core Calculations
-
-| Calculation | Formula |
-|---|---|
-| Wait Time | Queue Count × Avg Time per Patient |
-| Emergency Surcharge | 0% / 20% / 50% of base fee by urgency level |
-| Ward Cost | Days Admitted × Daily Ward Rate |
-| Age Subsidy | 15% off gross total if age < 5 or > 65 |
-
-
-## 👤 Student Details
-
-**D. T. Gamage** — AS20250644
