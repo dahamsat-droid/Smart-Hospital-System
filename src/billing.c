@@ -126,9 +126,9 @@ void printBillReceipt(const char *patientId,
         (urgencyLevel == 1) ? "Normal" :
         (urgencyLevel == 2) ? "Urgent" : "Critical";
 
-    printf("\n=======================================================\n");
-    printf("          SMART HOSPITAL ADMISSION & BILL\n");
-    printf("-----------------------------------------------------\n");
+    printf("\n==========================================================\n");
+    printf("              SMART HOSPITAL ADMISSION & BILL\n");
+    printf("------------------------------------------------------\n");
 
     printf("Patient ID     : %s\n", patientId);
     printf("Patient Name   : %s\n", patientName);
@@ -148,7 +148,7 @@ void printBillReceipt(const char *patientId,
     printf("Urgency Level  : Level %d (%s)\n",
            urgencyLevel, urgencyLabel);
 
-    printf("-----------------------------------------------------\n");
+    printf("------------------------------------------------------\n");
 
     printf("Base Consultation Fee   : LKR ");
     printFormattedAmount(baseFee);
@@ -195,7 +195,7 @@ void printBillReceipt(const char *patientId,
                waitTime);
     }
 
-    printf("=======================================================\n");
+    printf("==========================================================\n");
 
     if (outFinalPayable != NULL) {
         *outFinalPayable = finalPayable;
