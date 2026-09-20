@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "reports.h"
+#include "billing.h"
 
 /* These counters are returned through pointers so one function gives all three totals. */
 void countByUrgency(
@@ -154,11 +155,13 @@ void generateSummaryReport(
 
     printf("---------------------------------------------------------\n");
 
-    printf("Total Revenue Earned      : LKR %.2f\n",
-           totalRevenue);
+    printf("Total Revenue Earned      : LKR ");
+    printFormattedAmount(totalRevenue);
+    printf("\n");
 
-    printf("Total Discounts Granted   : LKR %.2f\n",
-           totalDiscounts);
+    printf("Total Discounts Granted   : LKR ");
+    printFormattedAmount(totalDiscounts);
+    printf("\n");
 
     printf("---------------------------------------------------------\n");
     printf("Bed Occupancy by Ward:\n");
@@ -185,10 +188,12 @@ void generateSummaryReport(
 
     printf("---------------------------------------------------------\n");
 
-    printf("Highest-Paying Patient    : %s (%s) - LKR %.2f\n",
+    printf("Highest-Paying Patient    : %s (%s) - LKR ",
            patientNames[topIndex],
-           patientIds[topIndex],
-           finalBillAmounts[topIndex]);
+           patientIds[topIndex]);
+
+    printFormattedAmount(finalBillAmounts[topIndex]);
+    printf("\n");
 
     printf("=========================================================\n");
 }

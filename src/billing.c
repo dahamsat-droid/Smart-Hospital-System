@@ -1,6 +1,48 @@
 #include <stdio.h>
 #include "billing.h"
 
+/* Formats monetary values with commas as thousands separators. */
+void printFormattedAmount(double amount) {
+
+    char buffer[50];
+
+    snprintf(buffer, sizeof(buffer), "%.2f", amount);
+
+    int length = 0;
+
+    while (buffer[length] != '\0') {
+        length++;
+    }
+
+    int decimalPosition = length;
+
+    for (int i = 0; i < length; i++) {
+        if (buffer[i] == '.') {
+            decimalPosition = i;
+            break;
+        }
+    }
+
+    int digitsBeforeDecimal = decimalPosition;
+    int firstGroup = digitsBeforeDecimal % 3;
+
+    if (firstGroup == 0) {
+        firstGroup = 3;
+    }
+
+    for (int i = 0; i < decimalPosition; i++) {
+
+        if (i > 0 && i == firstGroup) {
+            printf(",");
+            firstGroup += 3;
+        }
+
+        printf("%c", buffer[i]);
+    }
+
+    printf("%s", buffer + decimalPosition);
+}
+
 /* The current queue is used first, then increased for the new patient. */
 double calculateWaitTime(int specialtyQueueCount[NUM_SPECIALTIES],
                          int specialtyId,
@@ -108,34 +150,42 @@ void printBillReceipt(const char *patientId,
 
     printf("-----------------------------------------------------\n");
 
-    printf("Base Consultation Fee   : LKR %.2f\n", baseFee);
+    printf("Base Consultation Fee   : LKR ");
+    printFormattedAmount(baseFee);
+    printf("\n");
 
-    printf("Emergency Surcharge     : LKR %.2f (%.0f%%)\n",
-           surcharge, surchargePercent);
+    printf("Emergency Surcharge     : LKR ");
+    printFormattedAmount(surcharge);
+    printf(" (%.0f%%)\n", surchargePercent);
 
     if (isAdmitted) {
-        printf("Ward Stay Cost (%d Days) : LKR %.2f\n",
-               daysAdmitted, wardCost);
+        printf("Ward Stay Cost (%d Days) : LKR ",
+               daysAdmitted);
+        printFormattedAmount(wardCost);
+        printf("\n");
     } else {
         printf("Ward Stay Cost          : LKR 0.00\n");
     }
 
     printf("----------------------------------------------------\n");
 
-    printf("Gross Total Bill        : LKR %.2f\n",
-           grossTotal);
+    printf("Gross Total Bill        : LKR ");
+    printFormattedAmount(grossTotal);
+    printf("\n");
 
     if (subsidyEligible) {
-        printf("Age Subsidy Discount    : LKR -%.2f (15%%)\n",
-               discount);
+        printf("Age Subsidy Discount    : LKR -");
+        printFormattedAmount(discount);
+        printf(" (15%%)\n");
     } else {
         printf("Age Subsidy Discount    : LKR 0.00 (0%%)\n");
     }
 
     printf("----------------------------------------------------\n");
 
-    printf("Final Payable Amount    : LKR %.2f\n",
-           finalPayable);
+    printf("Final Payable Amount    : LKR ");
+    printFormattedAmount(finalPayable);
+    printf("\n");
 
     if (urgencyLevel == 3) {
         printf("Estimated Waiting Time  : %.2f mins (Immediate Attention)\n",
